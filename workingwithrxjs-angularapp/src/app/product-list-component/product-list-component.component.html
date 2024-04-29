@@ -1,0 +1,39 @@
+<div *ngIf="error; else productTable">
+    <p>{{ error }}</p>
+  </div>
+  
+  <ng-template #productTable>
+    <div>
+        <h2>All Products</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Title</th>
+              <th>Description</th>
+              <!-- Add other columns as needed -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of products">
+              <td>{{ product.id }}</td>
+              <td>{{ product.title }}</td>
+              <td>{{ product.description }}</td>
+              <!-- Add other columns as needed -->
+            </tr>
+          </tbody>
+        </table>
+    </div>
+  
+    <div>
+        <h2>Apple Products</h2>
+        <select>
+          <ng-container *ngFor="let product of products">
+            <option *ngIf="product.brand === 'Apple'" [value]="product">
+              {{ product.title }}
+            </option>
+          </ng-container>
+        </select>
+    </div>
+  </ng-template>
+  
